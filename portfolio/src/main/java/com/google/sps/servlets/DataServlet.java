@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.gson.Gson;
+import java.util.ArrayList;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +26,38 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private ArrayList<String> message;
+  private ArrayList<String> names;
+
+  @Override
+  public void init(){
+      message = new ArrayList<>();
+      names = new ArrayList<>();
+    //   message.add("hello");
+    //   message.add("world");
+    //   message.add("ok!");
+  }
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello Qinxin!</h1>");
+    // String quote = quotes.get((int) (Math.random() * quotes.size()));
+    String json = convertToJsonString();
+    response.setContentType("data/html;");
+    response.getWriter().println(json);
+  }
+  
+  private String convertToJsonString(){
+      Gson gson = new Gson();
+      String json = gson.toJson(message);
+      return json;
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+      String comment = request.getParameter("text-input");
+      String name = request.getParameter("name-input");
+      message.add(comment);
+      names.add(name);
+      response.sendRedirect("/index.html");
   }
 }

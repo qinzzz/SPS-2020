@@ -5,12 +5,16 @@
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpooOeMAiN3c7fWgpxbiUN6N3KnxmAnBE"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
   </head>
-  <body>
+  <body onload="toLoad();">
     <div id="content">
-      <h1>Qinxin Wang</h1>
+      <h1>Qinxin</h1>
       <p>This is my portfolio.</p>
       <img src="images/DSC09705.JPG" />
+      <br>
       <button onclick="addRandomGreeting()">A Fact about Me</button>
       <div id="greeting-container"></div>
 
@@ -35,10 +39,40 @@
 
       <h2>Experiences</h2>
       <p>Internship @ Alibaba</p>
-      <p>Research assistant @ SJTU, Berkeley</p>
+      <p>Research assistant @ SJTU</p>
 
-      <h3>Useful links:</h3>
-      <a href="github.com/qinzzz">Github</a>
+      <h2>Gallery</h2>
+           
+      <div class="photo">
+          <img src="images/DSC03334.jpg" />
+          <img src="images/DSC03346.jpg" />
+          <img src="images/DSC03366.jpg" />
+          <img src="images/1.JPG" />
+          <img src="images/4.JPG" />
+          <img src="images/5.JPG" />
+      </div>
+      
+      <h3>Links:</h3>
+      <a href="http://www.github.com/qinzzz">Github</a>
+
+      <h3>Get in touch with me!</h3>
+      <body onload = "getComment();">
+        <form action = '/data' method = "POST">
+            <p>Don't hesitate to leave your comment:</p>
+            <textarea name = "text-input">Glad to see you!</textarea>
+            <!-- <textarea name = "name-input">Mike</textarea> -->
+            <input type="submit" />
+        </form>
+        <!-- <button onclick="getComment()">get comment</button> -->
+        <br/>
+        <!-- <p>Comments:</p> -->
+        <div id="comment-container"></div>
+      </body>
+
+      <p>This page shows a Google Map!</p>
+      <div id="map"></div>
+
     </div>
+    
   </body>
 </html>
